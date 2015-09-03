@@ -1,0 +1,46 @@
+#!/bin/bash 
+#
+# Fix ownership and access-rights for files. Should run on the Pi.
+#
+# $Author: bablokb $
+# $Revision: 1.5 $
+#
+# License: GPL3
+# -----------------------------------------------------------------------------
+
+if [ "$UID" != "0" ]; then
+  echo -e "error: this script must be run as root!" >&2
+  exit 3
+fi
+
+chown -R www-data:www-data /var/www
+chmod +x /var/www/hotspot/php/getstatus.sh
+
+chown -R root:staff /usr/local/sbin
+chmod 755           /usr/local/sbin/*
+ 
+chown root:root /etc/sudoers.d/www-data \
+                /etc/rc.local \
+                /etc/iptables.3ghotspot \
+                /etc/hostapd.conf \
+                /etc/dnsmasq.conf \
+                /etc/default/hostapd \
+                /etc/init.d/hostapd.rtl8192 \
+                /etc/hostapd.conf.rtl8192 \
+                /etc/sysctl.conf \
+                /etc/phpsysinfo \
+                /etc/phpsysinfo/config.php
+
+chmod 640       /etc/sudoers.d/www-data
+chmod 644       /etc/iptables.3ghotspot \
+                /etc/hostapd.conf \
+                /etc/dnsmasq.conf \
+                /etc/default/hostapd \
+                /etc/hostapd.conf.rtl8192 \
+                /etc/sysctl.conf
+
+chmod 755       /etc/rc.local \
+                /etc/init.d/hostapd.rtl8192
+
+chown root:dialout /etc/wvdial.conf
+chmod 640          /etc/wvdial.conf

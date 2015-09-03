@@ -1,0 +1,16 @@
+auto lo
+iface lo inet loopback
+
+iface ppp0 inet wvdial
+provider umts
+pre-up /usr/local/sbin/setpin
+up iptables-restore < /etc/iptables.3ghotspot
+
+auto br0
+iface br0 inet static
+address   192.168.100.250
+netmask   255.255.255.0
+network   192.168.100.0
+broadcast 192.168.100.255
+bridge-ports eth0 wlan0
+bridge_maxwait 0

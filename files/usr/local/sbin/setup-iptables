@@ -1,0 +1,6 @@
+#!/bin/bash
+
+iptables -A FORWARD -i ppp0 -o br0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i br0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -o ppp0 -j MASQUERADE
+iptables-save > /etc/iptables.3ghotspot

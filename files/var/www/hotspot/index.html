@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Raspberry Pi 3G-Hotspot control page">
+
+    <title>Raspberry Pi 3G-Hotspot</title>
+
+<!-- layout and styling thanks to purecss.io -->
+<link rel="stylesheet" href="css/pure-min.css">
+<link rel="stylesheet" href="css/layouts/side-menu.css">
+
+<!-- jquery and special functions -->
+<script src="js/jquery-min.js"></script>
+<script src="js/hotspot.js"></script>
+
+<!-- reload status-information every 5 seconds -->
+<script  type="text/javascript">
+  $(document).ready(function() {
+    updateStatus();
+    setInterval(updateStatus,5000);   // update every five seconds
+  });
+</script>
+
+</head>
+
+<body>
+
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <span></span>
+    </a>
+
+    <div id="menu">
+        <div class="pure-menu">
+            <a class="pure-menu-heading" href="#">Info</a>
+            <ul class="pure-menu-list">
+               <li class="pure-menu-item">
+                 <a href="../net" target="_blank" 
+                    class="pure-menu-link">Traffic</a></li>
+               <li class="pure-menu-item">
+                 <a href="../sysinfo" target="_blank"
+                     class="pure-menu-link">System</a></li>
+               <li class="pure-menu-item">
+                 <a href="https://mobilfunk.tchibo.de/mein-tchibo-mobil/"
+                     target="_blank"
+                     class="pure-menu-link">Provider</a></li>
+            </ul>
+
+            <a class="pure-menu-heading" href="#">Actions</a>
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item">
+                  <a onclick="handlePPP0up()" 
+                     class="pure-menu-link">Connect</a></li>
+                <li class="pure-menu-item">
+                  <a onclick="handlePPP0down()"
+                     class="pure-menu-link">Disconnect</a></li>
+            </ul>
+
+            <a class="pure-menu-heading" href="#">System</a>
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item">
+                  <a onclick="handleReboot()"
+                     class="pure-menu-link">Reboot</a></li>
+                <li class="pure-menu-item">
+                  <a onclick="handleShutdown()" 
+                     class="pure-menu-link">Shutdown</a></li>
+            </ul>
+
+            <a class="pure-menu-heading" href="#">About</a>
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item">
+                  <a onclick="handleAuthor()" 
+                     class="pure-menu-link">Author</a></li>
+                <li class="pure-menu-item">
+                  <a onclick="handleLicense()"
+                     class="pure-menu-link">License</a></li>
+                <li class="pure-menu-item">
+                  <a href="https://github.com/bablokb/rpihotspot" target="_blank"
+                     class="pure-menu-link">Project</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="main">
+        <div class="header">
+            <h1>Raspberry Pi 3G-Hotspot</h1>
+            <h2>Overview</h2>
+        </div>
+
+	<div id='msgarea' style="font-size: larger; font-weight: 'bold'; color: red"></div>
+
+        <div class="content">
+            <h2 class="content-subhead">Connection Status</h2>
+<table class="pure-table pure-table-bordered pure-table-striped">
+  <tr>
+    <td>Connection</td>
+    <td id="constatus"></td>
+  </tr>
+  <tr>
+    <td>Up since</td>
+    <td id="contime"></td>
+  </tr>
+  <tr>
+    <td>Local IP</td>
+    <td id="localip"></td>
+  </tr>
+  <tr>
+    <td>Remote IP</td>
+    <td id="remoteip"></td>
+  </tr>
+  <tr>
+    <td>Connected clients</td>
+    <td id="conclients"></td>
+  </tr>
+</table>
+       </div>
+    </div>
+</div>
+
+<script src="js/ui.js"></script>
+
+</body>
+</html>
