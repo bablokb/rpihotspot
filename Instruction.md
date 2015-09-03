@@ -269,7 +269,9 @@ Configure Web-Control
 ---------------------
 
 The system provides a simple web interface to control the hotspot
-(![screenshot of webpage](web-control.png)). You can navigate to the page with 
+![screenshot of webpage](web-control.png).
+
+You can navigate to the page with 
     
     http://<ip-or-hostname-of-your-pi>/hotspot
 
@@ -287,5 +289,6 @@ The web-page is not in any way secured, every user in the local network can
 access the page. If you don't like that, you have to enable authentication
 for lighttpd (search the web for a tutorial).
 
-Note that lighttpd-user (named "www-data") needs special rights to provide
-the above services. These rights are configured in `/etc/sudoers.d/www-data`.
+Note that the user running the lighttpd-deamon (named "www-data") needs
+special privileges to provide the above services. These privileges are
+configured in `/etc/sudoers.d/www-data`.
