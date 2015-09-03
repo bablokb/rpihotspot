@@ -161,7 +161,7 @@ Some Realtek based WLAN-chips (e.g. the small and cheap Edimax
 EW-7811UN) need a different version of hostapd. A version suitable for
 the widely used chip RTL8192 is located in `/usr/local/sbin/hostapd`.
 In this case, move `/etc/init.d/hostapd.rtl8192` to `/etc/init.d/hostapd` and
-move `/etc/hostapd.conf` to `/etc/hostapd.conf.rtl8192`.
+move `/etc/hostapd.conf.rtl8192` to `/etc/hostapd.conf`.
 
 
 
